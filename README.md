@@ -6,7 +6,7 @@
  - *JPA and REST*
 - *Testing, including database test*
 - *Testing, including tests of REST-API's*
-- *CI and CONTINUOUS DELIVERY*
+- *CI and CONTINUOUS DELIVERY* 
 
 ### Preconditions
 *In order to use this code, you should have a local developer setup + a "matching" droplet on Digital Ocean as described in the 3. semester guidelines* 
