@@ -24,9 +24,38 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import errorhandling.AuthenticationException;
 import errorhandling.GenericExceptionMapper;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.servers.Server;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.persistence.EntityManagerFactory;
 import utils.EMF_Creator;
 
+@OpenAPIDefinition(
+        info = @Info(
+                title = "teamone-ca3",
+                version = "0.1",
+                description = "Backend of the CA3 project"
+        ),
+        tags = {
+            @Tag(name = "Login endoint", description = "API used for logging in users/admins")
+        },
+        servers = {
+            @Server(
+                    description = "For Local host testing",
+                    url = "http://localhost:8080/teamone-ca3"
+            ),
+            @Server(
+                    description = "Server API",
+                    url = "https://www.helvedesmaskine.dk/teamone-ca3"
+            )
+
+        }
+)
 @Path("login")
 public class LoginEndpoint {
 
@@ -37,6 +66,13 @@ public class LoginEndpoint {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
+  @Operation(summary = "Log in users/admin for the platform by returning a valid token that makes it possible to communicate data",
+            tags = {"Login endoint"},
+            responses = {
+                @ApiResponse(
+                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+                @ApiResponse(responseCode = "200", description = "The requested token was returned and the user is logged in and free to communicate data"),
+                @ApiResponse(responseCode = "400", description = "No token was return and no login is possible")})
   public Response login(String jsonString) throws AuthenticationException {
     JsonObject json = new JsonParser().parse(jsonString).getAsJsonObject();
     String username = json.get("username").getAsString();

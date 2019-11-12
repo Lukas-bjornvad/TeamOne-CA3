@@ -24,28 +24,27 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
 import utils.EMF_Creator;
 
-//@OpenAPIDefinition(
-//        info = @Info(
-//                title = "teamone-ca3",
-//                version = "0.1",
-//                description = "Backend of the CA3 project",
-//                contact = @Contact(name = "......", email = "...........")
-//        ),
-//        tags = {
-//            @Tag(name = "UserMessages", description = "API related to user access messages upon login")
-//        },
-//        servers = {
-//            @Server(
-//                    description = "For Local host testing",
-//                    url = "http://localhost:8080/teamone-ca3"
-//            ),
-//            @Server(
-//                    description = "Server API",
-//                    url = "https://www.helvedesmaskine.dk/teamone-ca3"
-//            )
-//
-//        }
-//)
+@OpenAPIDefinition(
+        info = @Info(
+                title = "teamone-ca3",
+                version = "0.1",
+                description = "Backend of the CA3 project"
+        ),
+        tags = {
+            @Tag(name = "User/Admin Messages", description = "API related to user/admin access messages upon login")
+        },
+        servers = {
+            @Server(
+                    description = "For Local host testing",
+                    url = "http://localhost:8080/teamone-ca3"
+            ),
+            @Server(
+                    description = "Server API",
+                    url = "https://www.helvedesmaskine.dk/teamone-ca3"
+            )
+
+        }
+)
 @Path("info")
 public class DemoResource {
 
@@ -67,13 +66,13 @@ public class DemoResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("user")
     @RolesAllowed("user")
-//    @Operation(summary = "Get information about a hobby by id",
-//            tags = {"hobby"},
-//            responses = {
-//                @ApiResponse(
-//                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
-//                @ApiResponse(responseCode = "200", description = "The Requested hobby"),
-//                @ApiResponse(responseCode = "400", description = "Hobby not found")})
+    @Operation(summary = "A message only accessable by a user",
+            tags = {"User/Admin Messages"},
+            responses = {
+                @ApiResponse(
+                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+                @ApiResponse(responseCode = "200", description = "The user welcome message is dislayed"),
+                @ApiResponse(responseCode = "400", description = "The person was not able to log in as a user")})
     public String getFromUser() {
         String thisuser = securityContext.getUserPrincipal().getName();
         return "{\"msg\": \"Hello to User: " + thisuser + "\"}";
@@ -83,6 +82,13 @@ public class DemoResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("admin")
     @RolesAllowed("admin")
+    @Operation(summary = "A message only accessable by an admin",
+            tags = {"User/Admin Messages"},
+            responses = {
+                @ApiResponse(
+                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+                @ApiResponse(responseCode = "200", description = "The admin welcome message is dislayed"),
+                @ApiResponse(responseCode = "400", description = "The person was not able to log in as an admin")})
     public String getFromAdmin() {
         String thisuser = securityContext.getUserPrincipal().getName();
         return "{\"msg\": \"Hello to (admin) User: " + thisuser + "\"}";
