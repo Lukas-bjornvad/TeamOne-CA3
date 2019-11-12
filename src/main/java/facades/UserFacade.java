@@ -8,12 +8,14 @@ import errorhandling.AuthenticationException;
 /**
  * @author lam@cphbusiness.dk
  */
-public class UserFacade {
+public class UserFacade extends AbstractFacade<User>{
   
     private static EntityManagerFactory emf;
     private static UserFacade instance;
     
-    private UserFacade(){}
+    public UserFacade() {
+        super(User.class);
+    }
     
     /**
      * 
@@ -27,9 +29,10 @@ public class UserFacade {
         }
         return instance;
     }
+
     
     public User getVeryfiedUser(String username, String password) throws AuthenticationException {
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = getEntityManager();
         User user;
         try {
             user = em.find(User.class, username);
@@ -40,6 +43,11 @@ public class UserFacade {
             em.close();
         }
         return user;
+    }
+
+    @Override
+    protected EntityManager getEntityManager() {
+        return emf.createEntityManager();
     }
 
 }
