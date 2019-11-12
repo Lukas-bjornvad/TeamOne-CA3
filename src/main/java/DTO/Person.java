@@ -12,19 +12,20 @@ import java.util.LinkedList;
  * @author Lukas Bjornvad
  */
 public class Person {
-
     private String name;
-    private String height;
-    private String mass;
+    private double height;
+    private double mass;
     private String hair_color;
     private String skin_color;
     private String eye_color;
     private String birth_year;
     private String gender;
-    private Planet homeworld;
-    private Species species;
-    private LinkedList<Starship> starships; 
-    private LinkedList<Vehicle> vehicles; 
+    private Object homeworld;
+    private Object species;
+    private LinkedList<Object> starships; 
+    private LinkedList<Object> vehicles; 
+
+
 
     public String getName() {
         return name;
@@ -34,19 +35,19 @@ public class Person {
         this.name = name;
     }
 
-    public String getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public void setHeight(String height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
-    public String getMass() {
+    public double getMass() {
         return mass;
     }
 
-    public void setMass(String mass) {
+    public void setMass(double mass) {
         this.mass = mass;
     }
 
@@ -90,27 +91,27 @@ public class Person {
         this.gender = gender;
     }
 
-    public Planet getHomeworld() {
+    public Object getHomeworld() {
         return homeworld;
     }
 
-    public void setHomeworld(Planet homeworld) {
+    public void setHomeworld(Object homeworld) {
         this.homeworld = homeworld;
     }
 
-    public Species getSpecies() {
+    public Object getSpecies() {
         return species;
     }
 
-    public void setSpecies(Species species) {
+    public void setSpecies(Object species) {
         this.species = species;
     }
 
-    public LinkedList<Starship> getStarships() {
+    public LinkedList<Object> getStarships() {
         return starships;
     }
 
-    public void setStarships(LinkedList<Starship> starships) {
+    public void setStarships(LinkedList<Object> starships) {
         this.starships = starships;
     }
 
@@ -118,11 +119,11 @@ public class Person {
         this.starships.add(starship);
     }
 
-    public LinkedList<Vehicle> getVehicles() {
+    public LinkedList<Object> getVehicles() {
         return vehicles;
     }
 
-    public void setVehicles(LinkedList<Vehicle> vehicles) {
+    public void setVehicles(LinkedList<Object> vehicles) {
         this.vehicles = vehicles;
     }
 
