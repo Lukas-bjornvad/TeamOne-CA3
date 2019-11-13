@@ -42,7 +42,7 @@ import utils.EMF_Creator;
                 description = "Backend of the CA3 project"
         ),
         tags = {
-            @Tag(name = "Login endoint", description = "API used for logging in users/admins")
+            @Tag(name = "Login endpoint", description = "API used for logging in users/admins")
         },
         servers = {
             @Server(
@@ -67,7 +67,7 @@ public class LoginEndpoint {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   @Operation(summary = "Log in users/admin for the platform by returning a valid token that makes it possible to communicate data",
-            tags = {"Login endoint"},
+            tags = {"Login endpoint"},
             responses = {
                 @ApiResponse(
                         content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),

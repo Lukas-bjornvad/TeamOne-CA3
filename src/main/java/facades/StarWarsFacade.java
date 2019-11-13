@@ -24,7 +24,7 @@ public class StarWarsFacade {
     private static Queue<Future<Object>> futures;
 
     //Private Constructor to ensure Singleton
-    private StarWarsFacade() {
+    public StarWarsFacade() {
     }
 
     public static StarWarsFacade getFacade() {
