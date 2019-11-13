@@ -5,23 +5,38 @@
  */
 package dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 /**
  *
  * @author Lukas Bjornvad
  */
 public class Starship {
+    @Schema(required = true,example = "X-wing")
     private String name;
+    @Schema(required = true,example = "T-65 X-wing")
     private String model;
+    @Schema(required = true,example = "Incom Corporation")
     private String manufacturer;
+    @Schema(required = true,example = "149999")
     private String cost_in_credits;
+    @Schema(required = true,example = "12.5")
     private double length;
+    @Schema(required = true,example = "1050")
     private String max_atmosphering_speed;
+    @Schema(required = true,example = "1")
     private int crew;
+    @Schema(required = true,example = "0")
     private int passengers;
+    @Schema(required = true,example = "110")
     private int cargo_capacity;
+    @Schema(required = true,example = "1 week")
     private String consumables;
+    @Schema(required = true,example = "1.0")
     private double hyperdrive_rating;
+    @Schema(required = true,example = "100")
     private int MGLT;
+    @Schema(required = true,example = "Starfighter")
     private String starship_class;
 
     public String getName() {

@@ -1,5 +1,6 @@
 package entities;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.mindrot.jbcrypt.BCrypt;
 
+@Schema(name="User")
+
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
@@ -24,11 +27,13 @@ public class User implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "user_name", length = 25)
+    @Schema(required = true,example = "Ole")
     private String userName;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "user_pass")
+    @Schema(required = true,example = "12345")
     private String userPass;
     @JoinTable(name = "user_roles", joinColumns = {
         @JoinColumn(name = "user_name", referencedColumnName = "user_name")}, inverseJoinColumns = {

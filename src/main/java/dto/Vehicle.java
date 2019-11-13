@@ -5,21 +5,34 @@
  */
 package dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 /**
  *
  * @author Lukas Bjornvad
  */
 public class Vehicle {
+    @Schema(required = true,example = "Snowspeeder")
     private String name;
+    @Schema(required = true,example = "t-47 airspeeder")
     private String model;
+    @Schema(required = true,example = "Incom corporation")
     private String manufacturer;
+    @Schema(required = true,example = "unknown")
     private String cost_in_credits;
+    @Schema(required = true,example = "4.5")
     private double length;
+    @Schema(required = true,example = "650")
     private double max_atmosphering_speed;
+    @Schema(required = true,example = "2")
     private int crew;
+    @Schema(required = true,example = "0")
     private int passengers;
+    @Schema(required = true,example = "10")
     private int cargo_capacity;
+    @Schema(required = true,example = "none")
     private String consumables;
+    @Schema(required = true,example = "airspeeder")
     private String vehicle_class;
 
     public String getName() {

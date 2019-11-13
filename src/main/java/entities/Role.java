@@ -1,5 +1,6 @@
 package entities;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -13,10 +14,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author Plaul
- */
+@Schema(name="Roles")
+
 @Entity
 @Table(name = "roles")
 public class Role implements Serializable {
@@ -26,6 +25,7 @@ public class Role implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "role_name", length = 20)
+    @Schema(required = true,example = "User")
     private String roleName;
     
     @ManyToMany(mappedBy = "roleList")

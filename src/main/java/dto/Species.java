@@ -5,19 +5,30 @@
  */
 package dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 /**
  *
  * @author Lukas Bjornvad
  */
 public class Species {
+    @Schema(required = true,example = "Human")
     private String name;
+    @Schema(required = true,example = "mammal")
     private String classification;
+    @Schema(required = true,example = "sentient")
     private String designation;
+    @Schema(required = true,example = "180")
     private double average_height;
+    @Schema(required = true,example = "caucasian, black, asian, hispanic")
     private String skin_colors;
+    @Schema(required = true,example = "blonde, brown, black, red")
     private String hair_colors;
+    @Schema(required = true,example = "brown, blue, green, hazel, grey, amber")
     private String eye_colors;
+    @Schema(required = true,example = "120")
     private int average_lifespan;
+    @Schema(required = true,example = "Galactic Basic")
     private String language;
 
     public String getName() {

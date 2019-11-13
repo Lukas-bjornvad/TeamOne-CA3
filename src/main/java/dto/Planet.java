@@ -5,6 +5,7 @@
  */
 package dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.LinkedList;
 
 /**
@@ -12,14 +13,23 @@ import java.util.LinkedList;
  * @author Lukas Bjornvad
  */
 public class Planet {
+    @Schema(required = true,example = "Tatooine")
     private String name;
+    @Schema(required = true,example = "23")
     private String rotation_period;
+    @Schema(required = true,example = "304")
     private String orbital_period;
+    @Schema(required = true,example = "10465")
     private String diameter;
+    @Schema(required = true,example = "arid")
     private String climate;
+    @Schema(required = true,example = "1 standard")
     private String gravity;
+    @Schema(required = true,example = "desert")
     private String terrain;
+    @Schema(required = true,example = "1")
     private String surface_water;
+    @Schema(required = true,example = "200000")
     private long population;
 //    private LinkedList<Person> residents;
 
