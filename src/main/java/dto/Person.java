@@ -5,6 +5,7 @@
  */
 package dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.LinkedList;
 
 /**
@@ -12,14 +13,23 @@ import java.util.LinkedList;
  * @author Simon Norup
  */
 public class Person {
+    @Schema(required = true,example = "Luke Skywalker")
     private String name;
+    @Schema(required = true,example = "172")
     private double height;
+    @Schema(required = true,example = "77")
     private double mass;
+    @Schema(required = true,example = "blond")
     private String hair_color;
+    @Schema(required = true,example = "fair")
     private String skin_color;
+    @Schema(required = true,example = "blue")
     private String eye_color;
+    @Schema(required = true,example = "19BBY")
     private String birth_year;
+    @Schema(required = true,example = "male")
     private String gender;
+    @Schema(required = true,example = "Tatooine")
     private String homeworld;
     private LinkedList<String> species;
     private LinkedList<String> starships; 
