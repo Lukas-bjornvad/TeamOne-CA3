@@ -145,7 +145,7 @@ public class LoginEndpointTest {
                 .when()
                 .post("/login")
                 .then()
-                .statusCode(500)
+                .statusCode(403)
                 .body("message", equalTo("Invalid user name or password"));
     }
 
@@ -157,7 +157,7 @@ public class LoginEndpointTest {
                 .when()
                 .post("/login")
                 .then()
-                .statusCode(500)
+                .statusCode(403)
                 .body("message", equalTo("Invalid user name or password"));
     }
 
@@ -169,7 +169,7 @@ public class LoginEndpointTest {
                 .when()
                 .post("/login")
                 .then()
-                .statusCode(500)
+                .statusCode(403)
                 .body("message", equalTo("Invalid user name or password"));
     }
 

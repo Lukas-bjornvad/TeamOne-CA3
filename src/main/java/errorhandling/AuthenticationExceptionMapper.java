@@ -22,12 +22,12 @@ public class AuthenticationExceptionMapper implements ExceptionMapper<Authentica
     @Override
     public Response toResponse(AuthenticationException ex) {
         Logger.getLogger(AuthenticationExceptionMapper.class.getName()).log(Level.SEVERE, null, ex);
-        Response.StatusType type = getStatusType(ex);
+        //Response.StatusType type = getStatusType(ex);
         ExceptionDTO err;
 
             err = new ExceptionDTO(403,ex.getMessage());
         
-        return Response.status(type.getStatusCode())
+        return Response.status(403)
                 .entity(gson.toJson(err))
                 .type(MediaType.APPLICATION_JSON).
                 build();
