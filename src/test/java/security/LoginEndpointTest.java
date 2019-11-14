@@ -91,7 +91,6 @@ public class LoginEndpointTest {
             em.persist(adminRole);
             em.persist(user);
             em.persist(admin);
-            System.out.println("Saved test data to database");
             em.getTransaction().commit();
         } finally {
             em.close();

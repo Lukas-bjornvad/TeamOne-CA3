@@ -83,7 +83,6 @@ public class StarWarsResourceTest {
             em.persist(user);
             em.persist(admin);
             em.persist(both);
-            System.out.println("Saved test data to database");
             em.getTransaction().commit();
         } finally {
             em.close();
@@ -223,6 +222,8 @@ public class StarWarsResourceTest {
     }
 
     @Test
+    @Disabled
+    // should use Mockups instead of actually fetching from third-party endpoints
     public void getStarWarsFetchTest() {
         login("user_admin", "test");
         given()
@@ -238,6 +239,9 @@ public class StarWarsResourceTest {
     }
     
     @Test
+    @Disabled
+    // should use Mockups instead of actually fetching from third-party endpoints
+    // google "java mock and outgoing requests"
     public void getStarWarsFetchNotAuthenticated() {
         logOut();
         given()
