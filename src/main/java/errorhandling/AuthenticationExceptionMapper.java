@@ -24,9 +24,6 @@ public class AuthenticationExceptionMapper implements ExceptionMapper<Authentica
         Logger.getLogger(AuthenticationExceptionMapper.class.getName()).log(Level.SEVERE, null, ex);
         Response.StatusType type = getStatusType(ex);
         ExceptionDTO err;
-//        if (ex instanceof WebApplicationException) {
-//             err = new ExceptionDTO(type.getStatusCode(), ((WebApplicationException) ex).getMessage());
-        
 
             err = new ExceptionDTO(403,ex.getMessage());
         
@@ -42,13 +39,5 @@ public class AuthenticationExceptionMapper implements ExceptionMapper<Authentica
         }
         return Response.Status.INTERNAL_SERVER_ERROR;
     }
-    //Small hack, to provide json-error response in the filter
-//    public static Response makeErrRes(String msg,int status){
-//        ExceptionDTO error = new ExceptionDTO(status, msg);
-//        String errJson =gson.toJson(error); 
-//        return Response.status(error.getCode())
-//                .entity(errJson)
-//                .type(MediaType.APPLICATION_JSON)
-//                .build();
-//    }
+    
 }

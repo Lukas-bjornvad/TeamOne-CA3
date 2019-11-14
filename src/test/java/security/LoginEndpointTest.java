@@ -1,34 +1,45 @@
-package rest;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package security;
 
 import entities.RenameMe;
-import entities.User;
 import entities.Role;
-
+import entities.User;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
-import io.restassured.http.ContentType;
 import io.restassured.parsing.Parser;
 import java.net.URI;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Disabled;
+import rest.ApplicationConfig;
 import utils.EMF_Creator;
 
+/**
+ *
+ * @author Rasmus2
+ */
 //@Disabled
 public class LoginEndpointTest {
 
     private static final int SERVER_PORT = 7777;
     private static final String SERVER_URL = "http://localhost/api";
-    private static RenameMe r1, r2;
 
     static final URI BASE_URI = UriBuilder.fromUri(SERVER_URL).port(SERVER_PORT).build();
     private static HttpServer httpServer;
@@ -76,14 +87,10 @@ public class LoginEndpointTest {
             user.addRole(userRole);
             User admin = new User("admin", "test");
             admin.addRole(adminRole);
-            User both = new User("user_admin", "test");
-            both.addRole(userRole);
-            both.addRole(adminRole);
             em.persist(userRole);
             em.persist(adminRole);
             em.persist(user);
             em.persist(admin);
-            em.persist(both);
             System.out.println("Saved test data to database");
             em.getTransaction().commit();
         } finally {
@@ -107,147 +114,64 @@ public class LoginEndpointTest {
         System.out.println("TOKEN ---> " + securityToken);
     }
 
-    private void logOut() {
-        securityToken = null;
-    }
-
     @Test
-    public void serverIsRunning() {
-        System.out.println("Testing is server UP");
-        given().when().get("/starwars").then().statusCode(200);
-    }
-
-    @Test
-    public void testRestNoAuthenticationRequired() {
+    public void testLoginAdmin() throws Exception {
         given()
                 .contentType("application/json")
+                .body("{\"username\":\"admin\", \"password\":\"test\"}")
                 .when()
-                .get("/starwars").then()
+                .post("/login")
+                .then()
                 .statusCode(200)
-                .body("msg", equalTo("Hello World"));
+                .body("username", equalTo("admin"));
     }
 
     @Test
-    public void testRestForAdmin() {
-        login("admin", "test");
+    public void testLoginUser() throws Exception {
         given()
                 .contentType("application/json")
-                .accept(ContentType.JSON)
-                .header("x-access-token", securityToken)
+                .body("{\"username\":\"user\", \"password\":\"test\"}")
                 .when()
-                .get("/starwars/admin").then()
+                .post("/login")
+                .then()
                 .statusCode(200)
-                .body("msg", equalTo("Hello to (admin) User: admin"));
+                .body("username", equalTo("user"));
     }
 
     @Test
-    public void testRestForUser() {
-        login("user", "test");
+    public void testNoLogin1() throws Exception {
         given()
                 .contentType("application/json")
-                .header("x-access-token", securityToken)
+                .body("{\"username\":\"user123\", \"password\":\"te123123st\"}")
                 .when()
-                .get("/starwars/user").then()
-                .statusCode(200)
-                .body("msg", equalTo("Hello to User: user"));
+                .post("/login")
+                .then()
+                .statusCode(500)
+                .body("message", equalTo("Invalid user name or password"));
     }
 
     @Test
-    public void testAutorizedUserCannotAccesAdminPage() {
-        login("user", "test");
+    public void testNoLogin2() throws Exception {
         given()
                 .contentType("application/json")
-                .header("x-access-token", securityToken)
+                .body("{\"username\":\"user\", \"password\":\"te123123st\"}")
                 .when()
-                .get("/starwars/admin").then() //Call Admin endpoint as user
-                .statusCode(401);
+                .post("/login")
+                .then()
+                .statusCode(500)
+                .body("message", equalTo("Invalid user name or password"));
     }
 
     @Test
-    public void testAutorizedAdminCannotAccesUserPage() {
-        login("admin", "test");
+    public void testNoLogin3() throws Exception {
         given()
                 .contentType("application/json")
-                .header("x-access-token", securityToken)
+                .body("{\"username\":\"user123\", \"password\":\"test\"}")
                 .when()
-                .get("/starwars/user").then() //Call User endpoint as Admin
-                .statusCode(401);
-    }
-
-    @Test
-    public void testRestForMultiRole1() {
-        login("user_admin", "test");
-        given()
-                .contentType("application/json")
-                .accept(ContentType.JSON)
-                .header("x-access-token", securityToken)
-                .when()
-                .get("/starwars/admin").then()
-                .statusCode(200)
-                .body("msg", equalTo("Hello to (admin) User: user_admin"));
-    }
-
-    @Test
-    public void testRestForMultiRole2() {
-        login("user_admin", "test");
-        given()
-                .contentType("application/json")
-                .header("x-access-token", securityToken)
-                .when()
-                .get("/starwars/user").then()
-                .statusCode(200)
-                .body("msg", equalTo("Hello to User: user_admin"));
-    }
-
-    @Test
-    public void userNotAuthenticated() {
-        logOut();
-        given()
-                .contentType("application/json")
-                .when()
-                .get("/starwars/user").then()
-                .statusCode(403)
-                .body("code", equalTo(403))
-                .body("message", equalTo("Not authenticated - do login"));
-    }
-
-    @Test
-    public void adminNotAuthenticated() {
-        logOut();
-        given()
-                .contentType("application/json")
-                .when()
-                .get("/starwars/user").then()
-                .statusCode(403)
-                .body("code", equalTo(403))
-                .body("message", equalTo("Not authenticated - do login"));
-    }
-
-    @Test
-    public void getStarWarsFetchTest() {
-        login("user_admin", "test");
-        given()
-                .contentType("application/json")
-                .accept(ContentType.JSON)
-                .header("x-access-token", securityToken)
-                .when()
-                .get("/starwars/starWars/1").then()
-                .statusCode(200)
-                .body("birth_year", equalTo("19BBY"))
-                .body("eye_color", equalTo("blue"))
-                .body("gender", equalTo("male"));
-    }
-    
-    @Test
-    public void getStarWarsFetchNotAuthenticated() {
-        logOut();
-        given()
-                .contentType("application/json")
-                .when()
-                .get("/starwars/starWars/1").then()
-                .statusCode(403)
-                .body("code", equalTo(403))
-                .body("message", equalTo("Not authenticated - do login"));
+                .post("/login")
+                .then()
+                .statusCode(500)
+                .body("message", equalTo("Invalid user name or password"));
     }
 
 }
