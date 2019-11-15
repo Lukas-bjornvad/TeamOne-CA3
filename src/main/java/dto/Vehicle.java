@@ -21,15 +21,15 @@ public class Vehicle {
     @Schema(required = true,example = "unknown")
     private String cost_in_credits;
     @Schema(required = true,example = "4.5")
-    private double length;
+    private String length;
     @Schema(required = true,example = "650")
-    private double max_atmosphering_speed;
+    private String max_atmosphering_speed;
     @Schema(required = true,example = "2")
-    private int crew;
+    private String crew;
     @Schema(required = true,example = "0")
-    private int passengers;
+    private String passengers;
     @Schema(required = true,example = "10")
-    private int cargo_capacity;
+    private String cargo_capacity;
     @Schema(required = true,example = "none")
     private String consumables;
     @Schema(required = true,example = "airspeeder")
@@ -67,43 +67,43 @@ public class Vehicle {
         this.cost_in_credits = cost_in_credits;
     }
 
-    public double getLength() {
+    public String getLength() {
         return length;
     }
 
-    public void setLength(double length) {
+    public void setLength(String length) {
         this.length = length;
     }
 
-    public double getMax_atmosphering_speed() {
+    public String getMax_atmosphering_speed() {
         return max_atmosphering_speed;
     }
 
-    public void setMax_atmosphering_speed(double max_atmosphering_speed) {
+    public void setMax_atmosphering_speed(String max_atmosphering_speed) {
         this.max_atmosphering_speed = max_atmosphering_speed;
     }
 
-    public int getCrew() {
+    public String getCrew() {
         return crew;
     }
 
-    public void setCrew(int crew) {
+    public void setCrew(String crew) {
         this.crew = crew;
     }
 
-    public int getPassengers() {
+    public String getPassengers() {
         return passengers;
     }
 
-    public void setPassengers(int passengers) {
+    public void setPassengers(String passengers) {
         this.passengers = passengers;
     }
 
-    public int getCargo_capacity() {
+    public String getCargo_capacity() {
         return cargo_capacity;
     }
 
-    public void setCargo_capacity(int cargo_capacity) {
+    public void setCargo_capacity(String cargo_capacity) {
         this.cargo_capacity = cargo_capacity;
     }
 

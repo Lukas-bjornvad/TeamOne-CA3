@@ -19,7 +19,7 @@ public class Species {
     @Schema(required = true,example = "sentient")
     private String designation;
     @Schema(required = true,example = "180")
-    private double average_height;
+    private String average_height;
     @Schema(required = true,example = "caucasian, black, asian, hispanic")
     private String skin_colors;
     @Schema(required = true,example = "blonde, brown, black, red")
@@ -27,7 +27,7 @@ public class Species {
     @Schema(required = true,example = "brown, blue, green, hazel, grey, amber")
     private String eye_colors;
     @Schema(required = true,example = "120")
-    private int average_lifespan;
+    private String average_lifespan;
     @Schema(required = true,example = "Galactic Basic")
     private String language;
 
@@ -55,11 +55,11 @@ public class Species {
         this.designation = designation;
     }
 
-    public double getAverage_height() {
+    public String getAverage_height() {
         return average_height;
     }
 
-    public void setAverage_height(double average_height) {
+    public void setAverage_height(String average_height) {
         this.average_height = average_height;
     }
 
@@ -87,11 +87,11 @@ public class Species {
         this.eye_colors = eye_colors;
     }
 
-    public int getAverage_lifespan() {
+    public String getAverage_lifespan() {
         return average_lifespan;
     }
 
-    public void setAverage_lifespan(int average_lifespan) {
+    public void setAverage_lifespan(String average_lifespan) {
         this.average_lifespan = average_lifespan;
     }
 

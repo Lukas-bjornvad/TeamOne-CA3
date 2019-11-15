@@ -30,7 +30,7 @@ public class Planet {
     @Schema(required = true,example = "1")
     private String surface_water;
     @Schema(required = true,example = "200000")
-    private long population;
+    private String population;
 //    private LinkedList<Person> residents;
 
 
@@ -98,11 +98,11 @@ public class Planet {
         this.surface_water = surface_water;
     }
 
-    public long getPopulation() {
+    public String getPopulation() {
         return population;
     }
 
-    public void setPopulation(long population) {
+    public void setPopulation(String population) {
         this.population = population;
     }
 /*

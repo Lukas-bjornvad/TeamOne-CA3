@@ -21,21 +21,21 @@ public class Starship {
     @Schema(required = true,example = "149999")
     private String cost_in_credits;
     @Schema(required = true,example = "12.5")
-    private double length;
+    private String length;
     @Schema(required = true,example = "1050")
     private String max_atmosphering_speed;
     @Schema(required = true,example = "1")
-    private int crew;
+    private String crew;
     @Schema(required = true,example = "0")
-    private int passengers;
+    private String passengers;
     @Schema(required = true,example = "110")
-    private int cargo_capacity;
+    private String cargo_capacity;
     @Schema(required = true,example = "1 week")
     private String consumables;
     @Schema(required = true,example = "1.0")
-    private double hyperdrive_rating;
+    private String hyperdrive_rating;
     @Schema(required = true,example = "100")
-    private int MGLT;
+    private String MGLT;
     @Schema(required = true,example = "Starfighter")
     private String starship_class;
 
@@ -71,11 +71,11 @@ public class Starship {
         this.cost_in_credits = cost_in_credits;
     }
 
-    public double getLength() {
+    public String getLength() {
         return length;
     }
 
-    public void setLength(double length) {
+    public void setLength(String length) {
         this.length = length;
     }
 
@@ -87,27 +87,27 @@ public class Starship {
         this.max_atmosphering_speed = max_atmosphering_speed;
     }
 
-    public int getCrew() {
+    public String getCrew() {
         return crew;
     }
 
-    public void setCrew(int crew) {
+    public void setCrew(String crew) {
         this.crew = crew;
     }
 
-    public int getPassengers() {
+    public String getPassengers() {
         return passengers;
     }
 
-    public void setPassengers(int passengers) {
+    public void setPassengers(String passengers) {
         this.passengers = passengers;
     }
 
-    public int getCargo_capacity() {
+    public String getCargo_capacity() {
         return cargo_capacity;
     }
 
-    public void setCargo_capacity(int cargo_capacity) {
+    public void setCargo_capacity(String cargo_capacity) {
         this.cargo_capacity = cargo_capacity;
     }
 
@@ -119,19 +119,19 @@ public class Starship {
         this.consumables = consumables;
     }
 
-    public double getHyperdrive_rating() {
+    public String getHyperdrive_rating() {
         return hyperdrive_rating;
     }
 
-    public void setHyperdrive_rating(double hyperdrive_rating) {
+    public void setHyperdrive_rating(String hyperdrive_rating) {
         this.hyperdrive_rating = hyperdrive_rating;
     }
 
-    public int getMGLT() {
+    public String getMGLT() {
         return MGLT;
     }
 
-    public void setMGLT(int MGLT) {
+    public void setMGLT(String MGLT) {
         this.MGLT = MGLT;
     }
 

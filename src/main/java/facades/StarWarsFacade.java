@@ -19,7 +19,6 @@ import utils.DataFetcher;
 public class StarWarsFacade {
 
     private static StarWarsFacade instance;
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static ExecutorService ES;
     private static Queue<Future<Object>> futures;
 
@@ -33,7 +32,7 @@ public class StarWarsFacade {
         }
         return instance;
     }
-
+    
     public PersonDTO fetchPerson(int id) throws IOException, InterruptedException, ExecutionException {
         long startTime = System.currentTimeMillis();
         ES = Executors.newCachedThreadPool();
