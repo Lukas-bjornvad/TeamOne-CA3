@@ -71,3 +71,7 @@ CorsResponseFilter, Access-Control-Allow-Origin: Your frontend deployment
 
 For instructions on how to use the API see the following openapi decription:
 //helvedesmaskine.dk/teamone-ca2-back/openapi/
+
+This project contains two major documentation files: 
+ - [First time users - getting started](README_proof_of_concept.md)
+ - [How to use for future projects](README_how_to_use.md)
