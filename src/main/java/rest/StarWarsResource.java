@@ -1,5 +1,7 @@
 package rest;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import dto.PersonDTO;
 import entities.User;
 import facades.StarWarsFacade;
@@ -15,7 +17,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import javax.annotation.security.RolesAllowed;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -47,6 +51,8 @@ import javax.ws.rs.core.UriInfo;
 )
 @Path("starwars")
 public class StarWarsResource {
+    
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     @Context
     private UriInfo context;
@@ -114,6 +120,22 @@ public class StarWarsResource {
         StarWarsFacade star = new StarWarsFacade();
         PersonDTO person = star.fetchPerson(id);
         return person;
+    }
+    
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("createUser")
+    @Operation(summary = "Creates a user and persists it to the database",
+            tags = {"Star Wars resource"},
+            responses = {
+                @ApiResponse(
+                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+                @ApiResponse(responseCode = "200", description = "The person was created and persisted"),
+                @ApiResponse(responseCode = "400", description = "No users was created or persisted")})
+    public void createUser(User user) {
+        StarWarsFacade star = new StarWarsFacade();
+        star.createUser(user);
     }
  
 }

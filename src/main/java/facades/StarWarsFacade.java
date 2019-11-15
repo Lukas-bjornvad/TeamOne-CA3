@@ -3,6 +3,8 @@ package facades;
 import dto.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import entities.Role;
+import entities.User;
 import java.io.IOException;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -10,7 +12,10 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import utils.DataFetcher;
+import utils.EMF_Creator;
 
 /**
  *
@@ -22,6 +27,8 @@ public class StarWarsFacade {
     private static ExecutorService ES;
     private static Queue<Future<Object>> futures;
 
+    EntityManagerFactory emf = EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.DEV, EMF_Creator.Strategy.CREATE);
+
     //Private Constructor to ensure Singleton
     public StarWarsFacade() {
     }
@@ -32,7 +39,7 @@ public class StarWarsFacade {
         }
         return instance;
     }
-    
+
     public PersonDTO fetchPerson(int id) throws IOException, InterruptedException, ExecutionException {
         long startTime = System.currentTimeMillis();
         ES = Executors.newCachedThreadPool();
@@ -68,6 +75,20 @@ public class StarWarsFacade {
         ES.shutdown();
         System.out.println("Execution time: " + ((double) (System.currentTimeMillis() - startTime) / 1000.) + " seconds...");
         return result;
+    }
+
+    public void createUser(User user) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Role userRole = new Role("user");
+            user.addRole(userRole);
+            //em.persist(userRole);
+            em.persist(user);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
     }
 
 }
