@@ -50,27 +50,19 @@ Whenever you have made a small feature, do the following:
 
 Instructions
 ==================
-Projects which are expected to use this start-code are projects that require all, or most of the following technologies:*
- - *JPA and REST*
-- *Testing, including database test*
-- *Testing, including tests of REST-API's*
-- *CI and CONTINUOUS DELIVERY* 
-- *More?*
-
-Preconditions
-*In order to use this code, you should have a local developer setup + a "matching" droplet on Digital Ocean as described in the 3. semester guidelines* 
+Preconditions:
+In order to use this code, you should have a local developer setup + a "matching" droplet on Digital Ocean as described in the 3. semester guidelines* 
 
 To set up the project backend to work on your machine and pipeline, change the following:
-
-pom.xml : Domain name
-config.properties : names of both databases
-.travis.yaml : name of test database
-Travis, environment variables: REMOTE_USER + REMOTE_PW
-rest, @OpenAPIDefinition: Local and remote server url for openapi.
-CorsResponseFilter, Access-Control-Allow-Origin: Your frontend deployment
+- pom.xml : Domain name
+- config.properties : names of both databases
+- .travis.yaml : name of test database
+- Travis, environment variables: REMOTE_USER + REMOTE_PW
+- rest, @OpenAPIDefinition: Local and remote server url for openapi.
+- CorsResponseFilter, Access-Control-Allow-Origin: Your frontend deployment
 
 For instructions on how to use the API see the following openapi decription:
-//helvedesmaskine.dk/teamone-ca2-back/openapi/
+https://helvedesmaskine.dk/teamone-ca2-back/openapi/
 
 This project contains two major documentation files: 
  - [First time users - getting started](README_proof_of_concept.md)
