@@ -4,17 +4,17 @@
 
 API:
 =====================
-Back end deployed at: https://www.helvedesmaskine.dk/teamone-ca2-back/
+Back end deployed at: https://www.helvedesmaskine.dk/teamone-ca3/
 
-Front end deployed at https://ca2-teamone-frontend.surge.sh/
+Front end deployed at https://ca3-teamone-front-frontend.surge.sh/
 
-Open API: https://helvedesmaskine.dk/teamone-ca2-back/openapi/
+Open API: https://helvedesmaskine.dk/teamone-ca3/openapi/
 
 Group: Team One
 =======================
-Lukas Bjørnvad
+Lukas BjÃ¸rnvad
 
-Rasmus Prætorius
+Rasmus PrÃ¦torius
 https://github.com/Rasm-P
 
 Simon Norup
@@ -60,10 +60,11 @@ To set up the project backend to work on your machine and pipeline, change the f
 - Travis, environment variables: REMOTE_USER + REMOTE_PW
 - rest, @OpenAPIDefinition: Local and remote server url for openapi.
 - CorsResponseFilter, Access-Control-Allow-Origin: Your frontend deployment
+- if you want user functionality: run the createUserRoles.sql script on your non-test database
 
 For instructions on how to use the API see the following openapi decription:
-https://helvedesmaskine.dk/teamone-ca2-back/openapi/
+https://helvedesmaskine.dk/teamone-ca3/openapi/
 
-This project contains two major documentation files: 
+* This project contains two major documentation files: 
  - [First time users - getting started](README_proof_of_concept.md)
  - [How to use for future projects](README_how_to_use.md)
