@@ -65,7 +65,7 @@ To set up the project backend to work on your machine and pipeline, change the f
 - if you want user functionality: run the createUserRoles.sql script on your non-test database
 
 For instructions on how to use the API see the following openapi decription:
-https://helvedesmaskine.dk/teamone-ca3/openapi/
+https://helvedesmaskine.dk/TeamOne-CA3/openapi/
 
 ^ This project contains two major documentation files: 
  - [First time users - getting started](README_proof_of_concept.md)
