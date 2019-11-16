@@ -1,14 +1,16 @@
 [![Build Status](https://travis-ci.org/wormple12/TeamOne-CA3.svg?branch=master)](https://travis-ci.org/wormple12/TeamOne-CA3)
 
+Travis fails almost every time due to a "Bad Gateway" issue. Might have something to do with a dependency that it can't find. But it cleans, builds and deploys successfully, and everything works.
+
 3. Semester, CA3
 
 API:
 =====================
-Back end deployed at: https://www.helvedesmaskine.dk/teamone-ca3/
+Back end deployed at: https://www.helvedesmaskine.dk/TeamOne-CA3/
 
-Front end deployed at https://ca3-teamone-front-frontend.surge.sh/
+Front end deployed at http://teamone-ca3-front-simon.surge.sh/
 
-Open API: https://helvedesmaskine.dk/teamone-ca3/openapi/
+Open API: https://www.helvedesmaskine.dk/TeamOne-CA3/openapi/
 
 Group: Team One
 =======================
@@ -63,7 +65,7 @@ To set up the project backend to work on your machine and pipeline, change the f
 - if you want user functionality: run the createUserRoles.sql script on your non-test database
 
 For instructions on how to use the API see the following openapi decription:
-https://helvedesmaskine.dk/teamone-ca3/openapi/
+https://helvedesmaskine.dk/TeamOne-CA3/openapi/
 
 ^ This project contains two major documentation files: 
  - [First time users - getting started](README_proof_of_concept.md)
