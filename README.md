@@ -51,7 +51,7 @@ Whenever you have made a small feature, do the following:
 Instructions
 ==================
 Preconditions:
-In order to use this code, you should have a local developer setup + a "matching" droplet on Digital Ocean as described in the 3. semester guidelines* 
+In order to use this code, you should have a local developer setup + a "matching" droplet on Digital Ocean as described in the 3. semester guidelines^
 
 To set up the project backend to work on your machine and pipeline, change the following:
 - pom.xml : Domain name
@@ -65,6 +65,6 @@ To set up the project backend to work on your machine and pipeline, change the f
 For instructions on how to use the API see the following openapi decription:
 https://helvedesmaskine.dk/teamone-ca3/openapi/
 
-* This project contains two major documentation files: 
+^ This project contains two major documentation files: 
  - [First time users - getting started](README_proof_of_concept.md)
  - [How to use for future projects](README_how_to_use.md)
