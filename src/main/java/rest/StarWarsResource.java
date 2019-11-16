@@ -65,8 +65,6 @@ public class StarWarsResource {
     @Operation(summary = "A welcome message that confirms the connection to the default starwars API",
             tags = {"Star Wars resource"},
             responses = {
-                @ApiResponse(
-                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
                 @ApiResponse(responseCode = "200", description = "The user successfully connected"),
                 @ApiResponse(responseCode = "400", description = "The server cannot or will not process the request")})
     public String demo() {
@@ -80,8 +78,6 @@ public class StarWarsResource {
     @Operation(summary = "A message only accessable by a user",
             tags = {"Star Wars resource"},
             responses = {
-                @ApiResponse(
-                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
                 @ApiResponse(responseCode = "200", description = "The user welcome message is dislayed"),
                 @ApiResponse(responseCode = "403", description = "Not authenticated - do login")})
     public String getFromUser() {
@@ -96,8 +92,6 @@ public class StarWarsResource {
     @Operation(summary = "A message only accessable by an admin",
             tags = {"Star Wars resource"},
             responses = {
-                @ApiResponse(
-                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
                 @ApiResponse(responseCode = "200", description = "The admin welcome message is dislayed"),
                 @ApiResponse(responseCode = "403", description = "Not authenticated - do login")})
     public String getFromAdmin() {
@@ -113,7 +107,7 @@ public class StarWarsResource {
             tags = {"Star Wars resource"},
             responses = {
                 @ApiResponse(
-                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = PersonDTO.class))),
                 @ApiResponse(responseCode = "200", description = "The requested resources was returned"),
                 @ApiResponse(responseCode = "400", description = "The server cannot or will not process the request and no resources were returned")})
     public PersonDTO getStarWarsFetch(@PathParam("id") int id) throws IOException, InterruptedException, ExecutionException {
