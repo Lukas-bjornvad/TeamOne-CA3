@@ -5,9 +5,9 @@ import com.google.gson.GsonBuilder;
 import dto.PersonDTO;
 import entities.User;
 import facades.StarWarsFacade;
+import facades.UserFacade;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -51,7 +51,7 @@ import javax.ws.rs.core.UriInfo;
 )
 @Path("starwars")
 public class StarWarsResource {
-    
+
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     @Context
@@ -59,7 +59,7 @@ public class StarWarsResource {
 
     @Context
     SecurityContext securityContext;
-            
+
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     @Operation(summary = "A welcome message that confirms the connection to the default starwars API",
@@ -72,7 +72,7 @@ public class StarWarsResource {
     public String demo() {
         return "{\"msg\":\"Hello World\"}";
     }
-    
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("user")
@@ -104,7 +104,7 @@ public class StarWarsResource {
         String thisuser = securityContext.getUserPrincipal().getName();
         return "{\"msg\": \"Hello to (admin) User: " + thisuser + "\"}";
     }
-    
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("starWars/{id}")
@@ -121,7 +121,9 @@ public class StarWarsResource {
         PersonDTO person = star.fetchPerson(id);
         return person;
     }
-    
+
+    // should be in a UserResource instead, since this is a general use endpoint
+    // is not yet tested either
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -133,9 +135,10 @@ public class StarWarsResource {
                         content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
                 @ApiResponse(responseCode = "200", description = "The person was created and persisted"),
                 @ApiResponse(responseCode = "400", description = "No users was created or persisted")})
-    public void createUser(User user) {
-        StarWarsFacade star = new StarWarsFacade();
-        star.createUser(user);
+    public User createUser(User user) {
+        UserFacade facade = new UserFacade();
+        facade.create(user);
+        return user;
     }
- 
+
 }
