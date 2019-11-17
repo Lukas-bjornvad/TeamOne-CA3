@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/wormple12/TeamOne-CA3.svg?branch=master)](https://travis-ci.org/wormple12/TeamOne-CA3)
+[![Build Status](https://travis-ci.org/Lukas-bjornvad/TeamOne-CA3.svg?branch=master)](https://travis-ci.org/Lukas-bjornvad/TeamOne-CA3)
 
 Travis fails almost every time due to a "Bad Gateway" issue. Might have something to do with a dependency that it can't find. But it cleans, builds and deploys successfully, and everything works.
 
@@ -70,3 +70,6 @@ https://helvedesmaskine.dk/TeamOne-CA3/openapi/
 ^ This project contains two major documentation files: 
  - [First time users - getting started](README_proof_of_concept.md)
  - [How to use for future projects](README_how_to_use.md)
+
+Reflection on implementation
+==================
