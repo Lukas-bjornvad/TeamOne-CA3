@@ -8,7 +8,7 @@ API:
 =====================
 Back end deployed at: https://www.helvedesmaskine.dk/TeamOne-CA3/
 
-Front end deployed at http://teamone-ca3-front-simon.surge.sh/
+Front end deployed at http://lukas_teamoneca3.surge.sh/
 
 Open API: https://www.helvedesmaskine.dk/TeamOne-CA3/openapi/
 
@@ -73,3 +73,4 @@ https://helvedesmaskine.dk/TeamOne-CA3/openapi/
 
 Reflection on implementation
 ==================
+I implemented the necessary changes desribed in the guide. First i changed my domain to lukasbjornvad.dk, I didn't make any changes to the databases since the names where identical to the ones I have. Set REMOTE_USER og REMOTE_PW up, had to go back to previous material to confirm what values needed to be used. Changed remote server url to lukasbjornvad.dk, made changes to the url in settings in the frontend and deployed it through surge. Made it so that the frontend deployment was allowed through the CORS-filter. Had some problems with the deployed database, had to change the setenv.sh value, through ssh, on the droplet from "startcode" to "cba" as that was previously found to be the cause of a problem for someone else in the group. Tested if everything worked and fixed some minor problems related to cached version of the project.
