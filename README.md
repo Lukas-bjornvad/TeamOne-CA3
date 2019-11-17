@@ -6,11 +6,11 @@ Travis fails almost every time due to a "Bad Gateway" issue. Might have somethin
 
 API:
 =====================
-Back end deployed at: https://www.helvedesmaskine.dk/TeamOne-CA3/
+Back end deployed at: https://www.lukasbjornvad.dk/TeamOne-CA3/
 
 Front end deployed at http://lukas_teamoneca3.surge.sh/
 
-Open API: https://www.helvedesmaskine.dk/TeamOne-CA3/openapi/
+Open API: https://www.lukasbjornvad.dk/TeamOne-CA3/openapi/
 
 Group: Team One
 =======================
@@ -65,7 +65,7 @@ To set up the project backend to work on your machine and pipeline, change the f
 - if you want user functionality: run the createUserRoles.sql script on your non-test database
 
 For instructions on how to use the API see the following openapi decription:
-https://helvedesmaskine.dk/TeamOne-CA3/openapi/
+https://lukasbjornvad.dk/TeamOne-CA3/openapi/
 
 ^ This project contains two major documentation files: 
  - [First time users - getting started](README_proof_of_concept.md)
