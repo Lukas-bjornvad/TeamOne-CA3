@@ -17,7 +17,7 @@ public class CorsResponseFilter implements ContainerResponseFilter {
   public void filter( ContainerRequestContext requestCtx, ContainerResponseContext res )
     throws IOException {
     // LOG.info( "Executing REST response filter" );
-    res.getHeaders().add("Access-Control-Allow-Origin", "*" ); //http://localhost:3000
+    res.getHeaders().add("Access-Control-Allow-Origin", "lukas_teamoneca3.surge.sh" ); //http://localhost:3000
     res.getHeaders().add("Access-Control-Allow-Credentials", "true" );
     res.getHeaders().add("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT" );
     res.getHeaders().add("Access-Control-Allow-Headers", "Origin, Accept, Content-Type, Authorization,x-access-token");
